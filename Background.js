@@ -5,6 +5,8 @@ class Background {
         this._image = image;
         this._sx = 10;
         this._x = this._sx;
+        this._y = (canvas.height / 100) * 90;
+
         this._cloudX = 0;
         this._dinoWidth = 86;
         this._dinoHeight = 95;
@@ -32,10 +34,10 @@ class Background {
         if(this._x + width > this._image.width) {
             var rest = this._image.width - this._x;
 
-            this._canvas.context.drawImage(this._image, this._sx, this._image.height - 26, width - rest, 26, rest - 2, height - 26, width - (rest - 2), 26);
+            this._canvas.context.drawImage(this._image, this._sx, this._image.height - 26, width - rest, 26, rest - 2, this._y, width - (rest - 2), 26);
         }
                                        //           sx,        sy,  sw,   sh, x, y,                               w,   h
-        this._canvas.context.drawImage(this._image, this._x, this._image.height - 26, width, 26, 0, height - 26, width, 26);
+        this._canvas.context.drawImage(this._image, this._x, this._image.height - 26, width, 26, 0, this._y, width, 26);
     }
 
 }

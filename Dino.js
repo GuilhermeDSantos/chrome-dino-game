@@ -3,14 +3,20 @@ class Dino {
     constructor(canvas, image) {
         this._canvas = canvas;
         this._image = image;
-        this._sx = 10;
-        this._dinoHeight = 95;
-        this._sy = this._canvas.canvas.height - this._dinoHeight - 5;
-        this._dinoY = this._sy;
+
         this._dinoWidth = 86;
-        //this._dinoY = this._canvas.canvas.height - this._dinoHeight - 5;
+        this._dinoHeight = 95;
+
+        this._minY = ((canvas.height / 100) * 95) - this._dinoWidth;
+        this._maxY = ((canvas.height / 100) * 50) - this._dinoWidth;
+
+        this._x = (canvas.width / 100) * 10;
+        this._y = this._minY;
+
+        this._jumping = false;
+        this._falling = false;
+
         this._count = 0;
-        this._jump = false;
     }
 
     /*
@@ -28,14 +34,30 @@ class Dino {
     draw() {
         var width = this._canvas.canvas.width, height = this._canvas.canvas.height;
 
-        if(this.isJumping) {
-            this._dinoY-=4;
+        if(this._jumping) {
+            if(this._falling) {
+                if(this._y == this._minY) {
+                    this._falling = false;
+                    this._jumping = false;
+                } else {
+                    this._y++;
+                }
+            } else {
+                if(this._y == this._maxY) {
+                    this._falling = true;
+                } else {
+                    this._y--;
+                }
+            }
+
+            this._draw(1340, 0)
+            return;
         }
 
         if(this._count < 40) {
-            this._canvas.context.drawImage(this._image, 1516, 0, this._dinoWidth, this._dinoHeight, ((width / 100) * 10), this._dinoY, this._dinoWidth, this._dinoHeight);
+            this._draw(1516, 0)
         } else {
-            this._canvas.context.drawImage(this._image, 1604, 0, this._dinoWidth, this._dinoHeight, ((width / 100) * 10), this._dinoY, this._dinoWidth, this._dinoHeight);
+            this._draw(1604, 0)
         }
         if(this._count > 80) {
             this._count = 0;
@@ -46,15 +68,14 @@ class Dino {
         document.getElementById("dinoy").innerText = this._dinoY + " " + this.isJumping;
     }
 
-    jump() {
-        if(!this.isJumping) {
-            this._jump = true;
-        }
-        alert(this.isJumping)
+    _draw(sx, sy) {
+        this._canvas.context.drawImage(this._image, sx, sy, this._dinoWidth, this._dinoHeight, this._x, this._y, this._dinoWidth, this._dinoHeight);
     }
 
-    get isJumping() {
-        return this._jump;
+    jump() {
+        if(!this._jumping) {
+            this._jumping = true;
+        }
     }
 }
 

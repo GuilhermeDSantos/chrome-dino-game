@@ -48,8 +48,6 @@
                 var canvas = new Canvas(document.getElementById("viewport"));
                 canvas.width = document.body.clientWidth * 0.9;
 
-                alert(canvas.width)
-
                 var image = document.getElementById("sprite");
 
                 var dino = new Dino(canvas, image);
@@ -86,9 +84,9 @@
                     if(sec % 1 == 0) {
                         speed = 10 - (sec * 0.12);
                     }
-                    
-                    if(sec == 2) {
-                        //dino.jump();
+
+                    if(sec % 5 == 0) {
+                        dino.jump();
                     }
 
                     fps = draw;
