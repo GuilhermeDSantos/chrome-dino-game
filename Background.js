@@ -39,5 +39,4 @@ class Background {
                                        //           sx,        sy,  sw,   sh, x, y,                               w,   h
         this._canvas.context.drawImage(this._image, this._x, this._image.height - 26, width, 26, 0, this._y, width, 26);
     }
-
 }

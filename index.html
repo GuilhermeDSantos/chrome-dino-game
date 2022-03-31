@@ -9,6 +9,7 @@
     <script src="Canvas.js"></script>
     <script src="Dino.js"></script>
     <script src="Background.js"></script>
+    <script src="Cactus.js"></script>
 
     <style type="text/css">
         body {
@@ -30,6 +31,7 @@
         <h1 id="sec">1</h1>
         <h1 id="speed"></h1>
         <h1 id="dinoy"></h1>
+        <h1 id="cac">Cactus X: </h1>
 
         <div class="canvasDiv">
             <canvas id="viewport" height="300"></canvas>
@@ -70,6 +72,7 @@
                         canvas.clear();
                         dino.draw();
                         background.draw();
+
                         draw++;
                     }
 
@@ -85,29 +88,20 @@
                         speed = 10 - (sec * 0.12);
                     }
 
-                    if(sec % 5 == 0) {
-                        dino.jump();
-                    }
-
                     fps = draw;
                     document.getElementById("dsec").innerText = "FPS: " + fps;
                     draw = 0;
                 }, 1000)
 
-                /*var b = setTimeout(function () {
-                    dino.addPoint();
+                window.onkeydown = function (event) {
+                    let key = event.code;
 
-                    speed = ((sec + 60) * 0.25);
-
-                    for(var i = 0; i < 1; i++) {
-                        background.draw();
-                        draw++;
+                    switch (key) {
+                        case "Space":
+                            dino.jump();
+                            break;
                     }
-                    document.getElementById("sec").innerText = sec + " - speed: " + speed;
-                       // background.draw();
-                        //document.getElementById("speed").innerText = (dino.points / 1000);
-
-                }, speed)*/
+                }
 
             };
         </script>
