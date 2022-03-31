@@ -17,8 +17,6 @@ class Background {
 
         this._x++;
 
-        document.getElementById("count").innerText = this._x;
-
         if(this._x == this._image.width) {
             this._x = this._sx;
         }

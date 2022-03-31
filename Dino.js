@@ -33,9 +33,7 @@ class Dino {
 
     draw() {
         var width = this._canvas.canvas.width, height = this._canvas.canvas.height;
-
-        document.getElementById("dinoy").innerText = this._y + ", max = " + this._maxY + ", min = " + this._minY;
-
+        
         if(this._jumping) {
             if(this._falling) {
                 if(this._y >= this._minY) {
@@ -66,8 +64,6 @@ class Dino {
         } else {
             this._count++;
         }
-        document.getElementById("sec").innerText = this._count;
-        document.getElementById("dinoy").innerText = this._dinoY + " " + this.isJumping;
     }
 
     _draw(sx, sy) {

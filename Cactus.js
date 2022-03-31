@@ -20,8 +20,6 @@ export class Cactus {
 
         this._x--;
 
-        document.getElementById("cac").innerText = "Cactus X: " + this._x;
-
         if(this._x <= -50) {
             this._finished = true;
         }
