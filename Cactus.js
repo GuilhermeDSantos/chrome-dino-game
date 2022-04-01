@@ -29,3 +29,5 @@ export class Cactus {
         return this._finished;
     }
 }
+
+module.exports = Cactus;
